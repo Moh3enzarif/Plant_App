@@ -59,6 +59,21 @@ class _RootPageState extends State<RootPage> {
           ),
         ),
       ),
+      // body: IndexedStack(
+      //   index: bottomIndex,
+      //   children: pages,
+      // ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        shape: const CircleBorder(),
+        backgroundColor: Constants.primaryColor,
+        child: Image.asset(
+          "assets/images/code-scan-two.png",
+          height: 30,
+        ),
+      ),
+      floatingActionButtonLocation:
+          FloatingActionButtonLocation.miniCenterDocked,
     );
   }
 }
