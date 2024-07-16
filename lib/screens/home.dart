@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:plant_app/const/constants.dart';
 
 class HomePage extends StatefulWidget {
@@ -33,8 +31,9 @@ class _HomePageState extends State<HomePage> {
     for (int i = 0; i < 3; i++) {
       if (currentindex == i) {
         indicators.add(_indicator(true));
-      } else
+      } else {
         indicators.add(_indicator(false));
+      }
     }
     return indicators;
   }
@@ -101,7 +100,7 @@ class _HomePageState extends State<HomePage> {
             bottom: 65.0,
             left: 30.0,
             child: Container(
-              margin: EdgeInsets.only(left: 300),
+              margin: const EdgeInsets.only(left: 300),
               padding: const EdgeInsets.all(4.0),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
