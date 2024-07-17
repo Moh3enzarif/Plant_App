@@ -10,6 +10,10 @@ class ProfilePage extends StatefulWidget {
 class _CartPageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Hello"),
+      ),
+    );
   }
 }

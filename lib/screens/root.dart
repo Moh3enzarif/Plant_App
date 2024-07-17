@@ -1,9 +1,12 @@
+import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:plant_app/const/constants.dart';
 import 'package:plant_app/screens/cart_page.dart';
 import 'package:plant_app/screens/favorite_page.dart';
+import 'package:plant_app/screens/home.dart';
 import 'package:plant_app/screens/profile_page.dart';
-import 'package:plant_app/screens/splash_screen.dart';
+import 'package:plant_app/screens/scan_page.dart';
 
 class RootPage extends StatefulWidget {
   const RootPage({super.key});
@@ -35,8 +38,6 @@ class _RootPageState extends State<RootPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        elevation: 0,
         title: Padding(
           padding: const EdgeInsets.only(top: 30),
           child: Row(
@@ -58,13 +59,23 @@ class _RootPageState extends State<RootPage> {
             ],
           ),
         ),
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        elevation: 0,
       ),
-      // body: IndexedStack(
-      //   index: bottomIndex,
-      //   children: pages,
-      // ),
+      body: IndexedStack(
+        index: bottomIndex,
+        children: pages,
+      ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+            context,
+            PageTransition(
+              child: const ScanPage(),
+              type: PageTransitionType.bottomToTop,
+            ),
+          );
+        },
         shape: const CircleBorder(),
         backgroundColor: Constants.primaryColor,
         child: Image.asset(
@@ -74,6 +85,19 @@ class _RootPageState extends State<RootPage> {
       ),
       floatingActionButtonLocation:
           FloatingActionButtonLocation.miniCenterDocked,
+      bottomNavigationBar: AnimatedBottomNavigationBar(
+          splashColor: Constants.primaryColor,
+          activeColor: Constants.primaryColor,
+          inactiveColor: Constants.textColor,
+          gapLocation: GapLocation.center,
+          notchSmoothness: NotchSmoothness.softEdge,
+          icons: icons,
+          activeIndex: bottomIndex,
+          onTap: (index) {
+            setState(() {
+              bottomIndex = index;
+            });
+          }),
     );
   }
 }

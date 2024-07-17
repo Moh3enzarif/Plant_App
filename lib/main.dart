@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Plant_App',
-      home: HomePage(),
+      home: SplashScreen(),
     );
   }
 }

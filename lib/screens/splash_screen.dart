@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:plant_app/const/constants.dart';
 import 'package:plant_app/screens/root.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class SplashScreen extends StatefulWidget {
+  const SplashScreen({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<SplashScreen> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<SplashScreen> {
   final PageController _pageController = PageController(initialPage: 0);
   int currentindex = 0;
 
