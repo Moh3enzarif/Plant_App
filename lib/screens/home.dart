@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:plant_app/const/constants.dart';
 
 class HomePage extends StatefulWidget {
@@ -13,11 +12,10 @@ class _CartPageState extends State<HomePage> {
   int selectedIndex = 0;
 
   final List<String> _plantTypes = [
-    "|پیشنهادی|",
-    "|پرفروش‌ها",
-    "|پر‌بازدیدها",
-    "|گل‌های‌سمی",
-    "|گل‌گلخانه‌ای",
+    "| پیشنهادی |",
+    "| پر‌بازدیدها |",
+    "| گل‌های سمی |",
+    "| گل‌های‌گلخانه‌ای |"
   ];
   @override
   Widget build(BuildContext context) {
