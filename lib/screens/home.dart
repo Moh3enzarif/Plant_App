@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:plant_app/const/constants.dart';
+import 'package:plant_app/models/plant.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -10,6 +11,12 @@ class HomePage extends StatefulWidget {
 
 class _CartPageState extends State<HomePage> {
   int selectedIndex = 0;
+
+  final List<Plant> _plantList = Plant.plantList;
+
+  bool taggleFavorite(bool isFavorited) {
+    return !isFavorited;
+  }
 
   final List<String> _plantTypes = [
     "| پیشنهادی |",
@@ -106,7 +113,97 @@ class _CartPageState extends State<HomePage> {
                   );
                 },
               ),
-            )
+            ),
+            SizedBox(
+                height: size.height * 0.3,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  reverse: true,
+                  itemCount: _plantList.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 15),
+                      width: 200,
+                      decoration: BoxDecoration(
+                        color: Constants.primaryColor.withOpacity(0.8),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Stack(
+                        children: [
+                          Positioned(
+                            top: 15,
+                            right: 15,
+                            child: Container(
+                              height: 40,
+                              width: 40,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(50.0),
+                              ),
+                              child: IconButton(
+                                onPressed: () {},
+                                icon: Icon(
+                                  _plantList[index].isFavorated == true
+                                      ? Icons.favorite
+                                      : Icons.favorite_border_outlined,
+                                  size: 20,
+                                ),
+                              ),
+                            ),
+                          ),
+                          Positioned(
+                            top: 50,
+                            bottom: 50,
+                            right: 50,
+                            left: 50,
+                            child: Image.asset(_plantList[index].imageURL),
+                          ),
+                          Positioned(
+                            bottom: 15,
+                            left: 15,
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 10, vertical: 2),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              child: Text(
+                                r"$" + _plantList[index].price.toString(),
+                              ),
+                            ),
+                          ),
+                          Positioned(
+                            bottom: 15,
+                            right: 15,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Text(
+                                  _plantList[index].category,
+                                  style: const TextStyle(
+                                    fontFamily: "Muli",
+                                    fontSize: 14,
+                                    color: Colors.white70,
+                                  ),
+                                ),
+                                Text(
+                                  _plantList[index].plantName,
+                                  style: const TextStyle(
+                                    fontFamily: "Muli",
+                                    fontSize: 14,
+                                    color: Colors.white70,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                )),
           ],
         ),
       ),

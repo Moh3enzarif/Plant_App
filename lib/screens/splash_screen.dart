@@ -157,8 +157,8 @@ class CreatePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(
-        left: 60,
-        right: 60,
+        left: 50,
+        right: 50,
         bottom: 80,
       ),
       child: Column(
