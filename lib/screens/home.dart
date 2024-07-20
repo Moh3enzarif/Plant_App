@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:plant_app/const/constants.dart';
 import 'package:plant_app/models/plant.dart';
 
@@ -115,95 +116,190 @@ class _CartPageState extends State<HomePage> {
               ),
             ),
             SizedBox(
-                height: size.height * 0.3,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  reverse: true,
-                  itemCount: _plantList.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return Container(
-                      margin: const EdgeInsets.symmetric(horizontal: 15),
-                      width: 200,
-                      decoration: BoxDecoration(
-                        color: Constants.primaryColor.withOpacity(0.8),
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: Stack(
+              height: size.height * 0.3,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                reverse: true,
+                itemCount: _plantList.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 15),
+                    width: 200,
+                    decoration: BoxDecoration(
+                      color: Constants.primaryColor.withOpacity(0.8),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Stack(
+                      children: [
+                        Positioned(
+                          top: 15,
+                          right: 15,
+                          child: Container(
+                            height: 40,
+                            width: 40,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(50.0),
+                            ),
+                            child: IconButton(
+                              onPressed: () {},
+                              icon: Icon(
+                                _plantList[index].isFavorated == true
+                                    ? Icons.favorite
+                                    : Icons.favorite_border_outlined,
+                                size: 20,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          top: 50,
+                          bottom: 50,
+                          right: 50,
+                          left: 50,
+                          child: Image.asset(_plantList[index].imageURL),
+                        ),
+                        Positioned(
+                          bottom: 15,
+                          left: 15,
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 2),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            child: Text(
+                              r"$" + _plantList[index].price.toString(),
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          bottom: 15,
+                          right: 15,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              Text(
+                                _plantList[index].category,
+                                style: const TextStyle(
+                                  fontFamily: "Muli",
+                                  fontSize: 14,
+                                  color: Colors.white70,
+                                ),
+                              ),
+                              Text(
+                                _plantList[index].plantName,
+                                style: const TextStyle(
+                                  fontFamily: "Muli",
+                                  fontSize: 14,
+                                  color: Colors.white70,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              ),
+            ),
+            Container(
+              alignment: Alignment.centerRight,
+              child: const Padding(
+                padding: EdgeInsets.only(right: 18, bottom: 15, top: 20),
+                child: Text(
+                  "گیاهان جدید",
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontFamily: "Muli",
+                      fontWeight: FontWeight.w900,
+                      fontSize: 18),
+                ),
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 18),
+              height: size.height * 0.3,
+              child: ListView.builder(
+                itemCount: _plantList.length,
+                itemBuilder: (context, index) {
+                  return Container(
+                    decoration: BoxDecoration(
+                      color: Constants.primaryColor.withOpacity(0.1),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    height: 80,
+                    width: size.width,
+                    margin: const EdgeInsets.only(top: 10, bottom: 10),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 18),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Positioned(
-                            top: 15,
-                            right: 15,
-                            child: Container(
-                              height: 40,
-                              width: 40,
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(50.0),
+                          Row(
+                            children: [
+                              Text(r"$" + _plantList[index].price.toString()),
+                              ////
+                            ],
+                          ),
+                          Stack(
+                            clipBehavior: Clip.none,
+                            children: [
+                              Container(
+                                width: 60,
+                                height: 60,
+                                decoration: BoxDecoration(
+                                    color:
+                                        Constants.primaryColor.withOpacity(0.8),
+                                    shape: BoxShape.circle),
                               ),
-                              child: IconButton(
-                                onPressed: () {},
-                                icon: Icon(
-                                  _plantList[index].isFavorated == true
-                                      ? Icons.favorite
-                                      : Icons.favorite_border_outlined,
-                                  size: 20,
+                              Positioned(
+                                bottom: 5,
+                                left: 0,
+                                right: 0,
+                                child: SizedBox(
+                                  height: 80,
+                                  child:
+                                      Image.asset(_plantList[index].imageURL),
                                 ),
                               ),
-                            ),
-                          ),
-                          Positioned(
-                            top: 50,
-                            bottom: 50,
-                            right: 50,
-                            left: 50,
-                            child: Image.asset(_plantList[index].imageURL),
-                          ),
-                          Positioned(
-                            bottom: 15,
-                            left: 15,
-                            child: Container(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 10, vertical: 2),
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              child: Text(
-                                r"$" + _plantList[index].price.toString(),
-                              ),
-                            ),
-                          ),
-                          Positioned(
-                            bottom: 15,
-                            right: 15,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: [
-                                Text(
-                                  _plantList[index].category,
-                                  style: const TextStyle(
-                                    fontFamily: "Muli",
-                                    fontSize: 14,
-                                    color: Colors.white70,
-                                  ),
+                              Positioned(
+                                bottom: 5,
+                                right: 80,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  children: [
+                                    Text(
+                                      _plantList[index].category,
+                                      style: const TextStyle(
+                                        fontSize: 13,
+                                        fontFamily: "Muli",
+                                      ),
+                                    ),
+                                    Text(
+                                      _plantList[index].category,
+                                      style: const TextStyle(
+                                        fontSize: 18,
+                                        fontFamily: "Muli",
+                                        color: Colors.black,
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                                Text(
-                                  _plantList[index].plantName,
-                                  style: const TextStyle(
-                                    fontFamily: "Muli",
-                                    fontSize: 14,
-                                    color: Colors.white70,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
+                              ),
+                            ],
+                          )
                         ],
                       ),
-                    );
-                  },
-                )),
+                    ),
+                  );
+                },
+              ),
+            )
           ],
         ),
       ),
