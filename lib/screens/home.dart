@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:plant_app/const/constants.dart';
 import 'package:plant_app/models/plant.dart';
+import 'package:plant_app/screens/detail_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -122,85 +124,104 @@ class _CartPageState extends State<HomePage> {
                 reverse: true,
                 itemCount: _plantList.length,
                 itemBuilder: (BuildContext context, int index) {
-                  return Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 15),
-                    width: 200,
-                    decoration: BoxDecoration(
-                      color: Constants.primaryColor.withOpacity(0.8),
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: Stack(
-                      children: [
-                        Positioned(
-                          top: 15,
-                          right: 15,
-                          child: Container(
-                            height: 40,
-                            width: 40,
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(50.0),
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        PageTransition(
+                            child: DetailPage(
+                              plantID: _plantList[index].plantId,
                             ),
-                            child: IconButton(
-                              onPressed: () {},
-                              icon: Icon(
-                                _plantList[index].isFavorated == true
-                                    ? Icons.favorite
-                                    : Icons.favorite_border_outlined,
-                                size: 20,
+                            type: PageTransitionType.bottomToTop),
+                      );
+                    },
+                    child: Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 15),
+                      width: 200,
+                      decoration: BoxDecoration(
+                        color: Constants.primaryColor.withOpacity(0.8),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Stack(
+                        children: [
+                          Positioned(
+                            top: 15,
+                            right: 15,
+                            child: Container(
+                              height: 40,
+                              width: 40,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(50.0),
                               ),
-                            ),
-                          ),
-                        ),
-                        Positioned(
-                          top: 50,
-                          bottom: 50,
-                          right: 50,
-                          left: 50,
-                          child: Image.asset(_plantList[index].imageURL),
-                        ),
-                        Positioned(
-                          bottom: 15,
-                          left: 15,
-                          child: Container(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 10, vertical: 2),
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            child: Text(
-                              r"$" + _plantList[index].price.toString(),
-                            ),
-                          ),
-                        ),
-                        Positioned(
-                          bottom: 15,
-                          right: 15,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              Text(
-                                _plantList[index].category,
-                                style: const TextStyle(
-                                  fontFamily: "Muli",
-                                  fontSize: 14,
-                                  color: Colors.white70,
+                              child: IconButton(
+                                onPressed: () {
+                                  setState(() {
+                                    bool isFavorated = taggleFavorite(
+                                        _plantList[index].isFavorated);
+                                    _plantList[index].isFavorated = isFavorated;
+                                  });
+                                },
+                                icon: Icon(
+                                  _plantList[index].isFavorated == true
+                                      ? Icons.favorite
+                                      : Icons.favorite_border_outlined,
+                                  color: Constants.primaryColor,
+                                  size: 20,
                                 ),
                               ),
-                              Text(
-                                _plantList[index].plantName,
-                                style: const TextStyle(
-                                  fontFamily: "Muli",
-                                  fontSize: 14,
-                                  color: Colors.white70,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ],
+                            ),
                           ),
-                        ),
-                      ],
+                          Positioned(
+                            top: 50,
+                            bottom: 50,
+                            right: 50,
+                            left: 50,
+                            child: Image.asset(_plantList[index].imageURL),
+                          ),
+                          Positioned(
+                            bottom: 15,
+                            left: 15,
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 10, vertical: 2),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              child: Text(
+                                r"تومان " + _plantList[index].price.toString(),
+                              ),
+                            ),
+                          ),
+                          Positioned(
+                            bottom: 15,
+                            right: 15,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Text(
+                                  _plantList[index].category,
+                                  style: const TextStyle(
+                                    fontFamily: "Muli",
+                                    fontSize: 14,
+                                    color: Colors.white70,
+                                  ),
+                                ),
+                                Text(
+                                  _plantList[index].plantName,
+                                  style: const TextStyle(
+                                    fontFamily: "Muli",
+                                    fontSize: 14,
+                                    color: Colors.white70,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   );
                 },
@@ -220,30 +241,52 @@ class _CartPageState extends State<HomePage> {
                 ),
               ),
             ),
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 18),
-              height: size.height * 0.3,
-              child: ListView.builder(
-                itemCount: _plantList.length,
-                itemBuilder: (context, index) {
-                  return Container(
-                    decoration: BoxDecoration(
-                      color: Constants.primaryColor.withOpacity(0.1),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    height: 80,
-                    width: size.width,
-                    margin: const EdgeInsets.only(top: 10, bottom: 10),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 18),
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  PageTransition(
+                      child: DetailPage(
+                        plantID: _plantList[index].plantId,
+                      ),
+                      type: PageTransitionType.bottomToTop),
+                );
+              },
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 18),
+                height: size.height * 0.3,
+                child: ListView.builder(
+                  itemCount: _plantList.length,
+                  itemBuilder: (context, index) {
+                    return Container(
+                      decoration: BoxDecoration(
+                        color: Constants.primaryColor.withOpacity(0.1),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      height: 80,
+                      width: size.width,
+                      margin: const EdgeInsets.only(top: 10, bottom: 10),
+                      padding: const EdgeInsets.only(left: 10, top: 10),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Row(
                             children: [
-                              Text(r"$" + _plantList[index].price.toString()),
-                              ////
+                              SizedBox(
+                                height: 22,
+                                child: Image.asset(
+                                    "assets/images/PriceUnit-green.png"),
+                              ),
+                              const SizedBox(width: 5),
+                              Text(
+                                _plantList[index].price.toString(),
+                                style: const TextStyle(
+                                  fontFamily: "Muli",
+                                  fontSize: 18,
+                                  color: Colors.black,
+                                ),
+                              ),
                             ],
                           ),
                           Stack(
@@ -295,9 +338,9 @@ class _CartPageState extends State<HomePage> {
                           )
                         ],
                       ),
-                    ),
-                  );
-                },
+                    );
+                  },
+                ),
               ),
             )
           ],
@@ -305,4 +348,21 @@ class _CartPageState extends State<HomePage> {
       ),
     );
   }
+}
+
+engNumberToFarsi(String number) {
+  Map numbers = {
+    '0': '۰',
+    '1': '۱',
+    '2': '۲',
+    '3': '۳',
+    '4': '۴',
+    '5': '۵',
+    '6': '۶',
+    '7': '۷',
+    '8': '۸',
+    '9': '۹',
+  };
+
+  numbers.forEach((key, value) => number = number.replaceAll(key, value));
 }
