@@ -208,7 +208,7 @@ class _CartPageState extends State<HomePage> {
                                         .farsiNumber,
                                     style: TextStyle(
                                       fontFamily: "Muli",
-                                      fontSize: 18,
+                                      fontSize: 16,
                                       fontWeight: FontWeight.bold,
                                       color: Constants.primaryColor,
                                     ),
@@ -235,7 +235,7 @@ class _CartPageState extends State<HomePage> {
                                   _plantList[index].plantName,
                                   style: const TextStyle(
                                     fontFamily: "Muli",
-                                    fontSize: 14,
+                                    fontSize: 16,
                                     color: Colors.white70,
                                     fontWeight: FontWeight.bold,
                                   ),
@@ -257,10 +257,11 @@ class _CartPageState extends State<HomePage> {
                 child: Text(
                   "گیاهان جدید",
                   style: TextStyle(
-                      color: Colors.black,
-                      fontFamily: "Muli",
-                      fontWeight: FontWeight.w900,
-                      fontSize: 20),
+                    color: Colors.black,
+                    fontFamily: "Muli",
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                  ),
                 ),
               ),
             ),
@@ -297,7 +298,7 @@ class _CartPageState extends State<HomePage> {
                           Row(
                             children: [
                               SizedBox(
-                                height: 25,
+                                height: 20,
                                 child: Image.asset(
                                     "assets/images/PriceUnit-green.png"),
                               ),
@@ -306,7 +307,7 @@ class _CartPageState extends State<HomePage> {
                                 _plantList[index].price.toString().farsiNumber,
                                 style: TextStyle(
                                   fontFamily: "Muli",
-                                  fontSize: 24,
+                                  fontSize: 18,
                                   fontWeight: FontWeight.bold,
                                   color: Constants.primaryColor,
                                 ),
@@ -343,7 +344,7 @@ class _CartPageState extends State<HomePage> {
                                     Text(
                                       _plantList[index].category,
                                       style: const TextStyle(
-                                        fontSize: 13,
+                                        fontSize: 14,
                                         fontFamily: "Muli",
                                       ),
                                     ),

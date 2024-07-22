@@ -87,7 +87,7 @@ class _DetailPageState extends State<DetailPage> {
                     top: 10,
                     right: 0,
                     child: SizedBox(
-                      height: 250,
+                      height: 200,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.end,
@@ -142,7 +142,7 @@ class PlantFeature extends StatelessWidget {
           style: TextStyle(
               color: Constants.textColor,
               fontFamily: "Muli",
-              fontSize: 22,
+              fontSize: 18,
               fontWeight: FontWeight.bold),
         ),
         Text(
@@ -150,7 +150,7 @@ class PlantFeature extends StatelessWidget {
           style: TextStyle(
               color: Constants.primaryColor,
               fontFamily: "Muli",
-              fontSize: 22,
+              fontSize: 18,
               fontWeight: FontWeight.bold),
         ),
       ],
