@@ -188,8 +188,16 @@ class _CartPageState extends State<HomePage> {
                                 color: Colors.white,
                                 borderRadius: BorderRadius.circular(20),
                               ),
-                              child: Text(
-                                r"تومان " + _plantList[index].price.toString(),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  const Text(
+                                    "تومان ",
+                                  ),
+                                  Text(
+                                    _plantList[index].price.toString(),
+                                  ),
+                                ],
                               ),
                             ),
                           ),
@@ -280,10 +288,11 @@ class _CartPageState extends State<HomePage> {
                               const SizedBox(width: 5),
                               Text(
                                 _plantList[index].price.toString(),
-                                style: const TextStyle(
+                                style: TextStyle(
                                   fontFamily: "Muli",
                                   fontSize: 18,
-                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                  color: Constants.primaryColor,
                                 ),
                               ),
                             ],
