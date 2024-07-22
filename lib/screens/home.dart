@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:plant_app/const/constants.dart';
 import 'package:plant_app/models/plant.dart';
@@ -241,24 +240,24 @@ class _CartPageState extends State<HomePage> {
                 ),
               ),
             ),
-            GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  PageTransition(
-                      child: DetailPage(
-                        plantID: _plantList[index].plantId,
-                      ),
-                      type: PageTransitionType.bottomToTop),
-                );
-              },
-              child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 18),
-                height: size.height * 0.3,
-                child: ListView.builder(
-                  itemCount: _plantList.length,
-                  itemBuilder: (context, index) {
-                    return Container(
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 18),
+              height: size.height * 0.3,
+              child: ListView.builder(
+                itemCount: _plantList.length,
+                itemBuilder: (context, index) {
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        PageTransition(
+                            child: DetailPage(
+                              plantID: _plantList[index].plantId,
+                            ),
+                            type: PageTransitionType.bottomToTop),
+                      );
+                    },
+                    child: Container(
                       decoration: BoxDecoration(
                         color: Constants.primaryColor.withOpacity(0.1),
                         borderRadius: BorderRadius.circular(10),
@@ -338,31 +337,14 @@ class _CartPageState extends State<HomePage> {
                           )
                         ],
                       ),
-                    );
-                  },
-                ),
+                    ),
+                  );
+                },
               ),
-            )
+            ),
           ],
         ),
       ),
     );
   }
-}
-
-engNumberToFarsi(String number) {
-  Map numbers = {
-    '0': '۰',
-    '1': '۱',
-    '2': '۲',
-    '3': '۳',
-    '4': '۴',
-    '5': '۵',
-    '6': '۶',
-    '7': '۷',
-    '8': '۸',
-    '9': '۹',
-  };
-
-  numbers.forEach((key, value) => number = number.replaceAll(key, value));
 }
