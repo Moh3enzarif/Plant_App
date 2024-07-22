@@ -3,6 +3,7 @@ import 'package:page_transition/page_transition.dart';
 import 'package:plant_app/const/constants.dart';
 import 'package:plant_app/models/plant.dart';
 import 'package:plant_app/screens/detail_page.dart';
+import 'package:plant_app/widgets/extention.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -191,11 +192,26 @@ class _CartPageState extends State<HomePage> {
                               child: Row(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  const Text(
+                                  Text(
                                     "تومان ",
+                                    style: TextStyle(
+                                      fontFamily: "Muli",
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                      color: Constants.primaryColor,
+                                    ),
                                   ),
                                   Text(
-                                    _plantList[index].price.toString(),
+                                    _plantList[index]
+                                        .price
+                                        .toString()
+                                        .farsiNumber,
+                                    style: TextStyle(
+                                      fontFamily: "Muli",
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                      color: Constants.primaryColor,
+                                    ),
                                   ),
                                 ],
                               ),
@@ -244,7 +260,7 @@ class _CartPageState extends State<HomePage> {
                       color: Colors.black,
                       fontFamily: "Muli",
                       fontWeight: FontWeight.w900,
-                      fontSize: 18),
+                      fontSize: 20),
                 ),
               ),
             ),
@@ -281,16 +297,16 @@ class _CartPageState extends State<HomePage> {
                           Row(
                             children: [
                               SizedBox(
-                                height: 22,
+                                height: 25,
                                 child: Image.asset(
                                     "assets/images/PriceUnit-green.png"),
                               ),
                               const SizedBox(width: 5),
                               Text(
-                                _plantList[index].price.toString(),
+                                _plantList[index].price.toString().farsiNumber,
                                 style: TextStyle(
                                   fontFamily: "Muli",
-                                  fontSize: 18,
+                                  fontSize: 24,
                                   fontWeight: FontWeight.bold,
                                   color: Constants.primaryColor,
                                 ),
