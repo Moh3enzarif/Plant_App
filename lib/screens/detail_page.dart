@@ -74,30 +74,43 @@ class _DetailPageState extends State<DetailPage> {
               padding: const EdgeInsets.all(20),
               child: Stack(
                 children: [
+                  //This is for image of products
+                  Positioned(
+                    top: 10,
+                    left: 0,
+                    child: SizedBox(
+                        height: 350,
+                        child: Image.asset(plantlist[widget.plantID].imageURL)),
+                  ),
+                  //This is for PlantFeature
                   Positioned(
                     top: 10,
                     right: 0,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        PlantFeature(
-                          title: "اندازه گیاه",
-                          plantFeature: plantlist[widget.plantID].size,
-                        ),
-                        PlantFeature(
-                          title: "رطوبت‌هوا",
-                          plantFeature: plantlist[widget.plantID]
-                              .humidity
-                              .toString()
-                              .farsiNumber,
-                        ),
-                        PlantFeature(
-                          title: "دمای‌نگهداری",
-                          plantFeature:
-                              plantlist[widget.plantID].temperature.farsiNumber,
-                        ),
-                      ],
+                    child: SizedBox(
+                      height: 250,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          PlantFeature(
+                            title: "اندازه گیاه",
+                            plantFeature: plantlist[widget.plantID].size,
+                          ),
+                          PlantFeature(
+                            title: "رطوبت‌هوا",
+                            plantFeature: plantlist[widget.plantID]
+                                .humidity
+                                .toString()
+                                .farsiNumber,
+                          ),
+                          PlantFeature(
+                            title: "دمای‌نگهداری",
+                            plantFeature: plantlist[widget.plantID]
+                                .temperature
+                                .farsiNumber,
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ],
@@ -129,7 +142,7 @@ class PlantFeature extends StatelessWidget {
           style: TextStyle(
               color: Constants.textColor,
               fontFamily: "Muli",
-              fontSize: 18,
+              fontSize: 22,
               fontWeight: FontWeight.bold),
         ),
         Text(
@@ -137,7 +150,7 @@ class PlantFeature extends StatelessWidget {
           style: TextStyle(
               color: Constants.primaryColor,
               fontFamily: "Muli",
-              fontSize: 18,
+              fontSize: 22,
               fontWeight: FontWeight.bold),
         ),
       ],
