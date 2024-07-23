@@ -117,6 +117,99 @@ class _DetailPageState extends State<DetailPage> {
               ),
             ),
           ),
+          Positioned(
+            bottom: 0,
+            right: 0,
+            left: 0,
+            child: Container(
+              padding: const EdgeInsets.only(top: 80, right: 30, left: 30),
+              height: size.height * 0.5,
+              width: size.width,
+              decoration: BoxDecoration(
+                color: Constants.primaryColor.withOpacity(0.5),
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(30),
+                  topRight: Radius.circular(30),
+                ),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.star,
+                            color: Constants.primaryColor,
+                            size: 30,
+                          ),
+                          Text(
+                            plantlist[widget.plantID]
+                                .rating
+                                .toString()
+                                .farsiNumber,
+                            style: TextStyle(
+                                color: Constants.primaryColor,
+                                fontFamily: "Muli",
+                                fontSize: 22,
+                                fontWeight: FontWeight.w600),
+                          ),
+                        ],
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Text(
+                            plantlist[widget.plantID].plantName,
+                            style: TextStyle(
+                                color: Constants.primaryColor,
+                                fontFamily: "Muli",
+                                fontSize: 28,
+                                fontWeight: FontWeight.w900),
+                          ),
+                          const SizedBox(height: 10),
+                          Row(
+                            children: [
+                              SizedBox(
+                                height: 20,
+                                child: Image.asset(
+                                    "assets/images/PriceUnit-green.png"),
+                              ),
+                              const SizedBox(width: 10),
+                              Text(
+                                plantlist[widget.plantID].price.toString(),
+                                style: TextStyle(
+                                    color: Constants.primaryColor,
+                                    fontFamily: "Muli",
+                                    fontSize: 26,
+                                    fontWeight: FontWeight.w900),
+                              ),
+                            ],
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                  const SizedBox(height: 15),
+                  Text(
+                    plantlist[widget.plantID].decription,
+                    textDirection: TextDirection.rtl,
+                    textAlign: TextAlign.justify,
+                    style: TextStyle(
+                      fontFamily: "Muli",
+                      color: Colors.black.withOpacity(0.7),
+                      height: 1.6,
+                      fontSize: 20,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
         ],
       ),
     );
