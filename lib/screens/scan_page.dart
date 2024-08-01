@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:plant_app/const/constants.dart';
+import 'package:mobile_scanner/mobile_scanner.dart';
+import 'package:plant_app/screens/camera_page.dart';
 
 class ScanPage extends StatefulWidget {
   const ScanPage({super.key});
@@ -9,6 +12,8 @@ class ScanPage extends StatefulWidget {
 }
 
 class _ScanPageState extends State<ScanPage> {
+  MobileScannerController cameraController = MobileScannerController();
+  // required options for the scanner
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -69,9 +74,20 @@ class _ScanPageState extends State<ScanPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Image.asset(
-                      "assets/images/code-scan.png",
-                      height: 100,
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          PageTransition(
+                            child: const CameraPage(),
+                            type: PageTransitionType.fade,
+                          ),
+                        );
+                      },
+                      child: Image.asset(
+                        "assets/images/code-scan.png",
+                        height: 100,
+                      ),
                     ),
                     const SizedBox(height: 20),
                     Text(
