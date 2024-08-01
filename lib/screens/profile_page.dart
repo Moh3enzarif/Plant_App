@@ -4,10 +4,10 @@ class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
 
   @override
-  State<ProfilePage> createState() => _CartPageState();
+  State<ProfilePage> createState() => _ProfilePageState();
 }
 
-class _CartPageState extends State<ProfilePage> {
+class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

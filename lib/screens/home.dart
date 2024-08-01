@@ -9,10 +9,10 @@ class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
   @override
-  State<HomePage> createState() => _CartPageState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _CartPageState extends State<HomePage> {
+class _HomePageState extends State<HomePage> {
   int selectedIndex = 0;
 
   final List<Plant> _plantList = Plant.plantList;

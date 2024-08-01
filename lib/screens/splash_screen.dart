@@ -6,10 +6,10 @@ class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
   @override
-  State<SplashScreen> createState() => _HomePageState();
+  State<SplashScreen> createState() => _SplashScreenPageState();
 }
 
-class _HomePageState extends State<SplashScreen> {
+class _SplashScreenPageState extends State<SplashScreen> {
   final PageController _pageController = PageController(initialPage: 0);
   int currentindex = 0;
 

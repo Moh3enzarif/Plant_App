@@ -5,10 +5,10 @@ class ScanPage extends StatefulWidget {
   const ScanPage({super.key});
 
   @override
-  State<ScanPage> createState() => _CartPageState();
+  State<ScanPage> createState() => _ScanPageState();
 }
 
-class _CartPageState extends State<ScanPage> {
+class _ScanPageState extends State<ScanPage> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
