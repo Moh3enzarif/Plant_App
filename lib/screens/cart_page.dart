@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:plant_app/models/plant.dart';
 
 class CartPage extends StatefulWidget {
-  const CartPage({super.key});
+  final List<Plant> addtoCartPlants;
+  const CartPage({
+    super.key,
+    required this.addtoCartPlants,
+  });
 
   @override
   State<CartPage> createState() => _CartPageState();
