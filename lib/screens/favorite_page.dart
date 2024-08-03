@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:plant_app/const/constants.dart';
 import 'package:plant_app/models/plant.dart';
 
 class FavoritePage extends StatefulWidget {
