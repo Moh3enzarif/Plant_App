@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:plant_app/models/plant.dart';
+import 'package:plant_app/widgets/plant_widget.dart';
 
 class FavoritePage extends StatefulWidget {
   final List<Plant> favotitePlants;
@@ -40,7 +41,23 @@ class _FavoritePageState extends State<FavoritePage> {
                 ],
               ),
             )
-          : Container(),
+          : Container(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 12,
+                vertical: 30,
+              ),
+              height: size.height * 0.5,
+              child: ListView.builder(
+                physics: const BouncingScrollPhysics(),
+                itemCount: widget.favotitePlants.length,
+                itemBuilder: (context, index) {
+                  return NewPlantWidget(
+                    plantList: widget.favotitePlants,
+                    index: index,
+                  );
+                },
+              ),
+            ),
     );
   }
 }

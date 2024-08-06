@@ -4,6 +4,7 @@ import 'package:plant_app/const/constants.dart';
 import 'package:plant_app/models/plant.dart';
 import 'package:plant_app/screens/detail_page.dart';
 import 'package:plant_app/widgets/extention.dart';
+import 'package:plant_app/widgets/plant_widget.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -87,6 +88,7 @@ class _HomePageState extends State<HomePage> {
               height: 70,
               width: size.width,
               child: ListView.builder(
+                physics: const BouncingScrollPhysics(),
                 reverse: true,
                 scrollDirection: Axis.horizontal,
                 itemCount: _plantTypes.length,
@@ -269,101 +271,12 @@ class _HomePageState extends State<HomePage> {
               padding: const EdgeInsets.symmetric(horizontal: 18),
               height: size.height * 0.3,
               child: ListView.builder(
+                physics: const BouncingScrollPhysics(),
                 itemCount: _plantList.length,
                 itemBuilder: (context, index) {
-                  return GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        PageTransition(
-                            child: DetailPage(
-                              plantID: _plantList[index].plantId,
-                            ),
-                            type: PageTransitionType.bottomToTop),
-                      );
-                    },
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Constants.primaryColor.withOpacity(0.1),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      height: 80,
-                      width: size.width,
-                      margin: const EdgeInsets.only(top: 10, bottom: 10),
-                      padding: const EdgeInsets.only(left: 10, top: 10),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Row(
-                            children: [
-                              SizedBox(
-                                height: 20,
-                                child: Image.asset(
-                                    "assets/images/PriceUnit-green.png"),
-                              ),
-                              const SizedBox(width: 5),
-                              Text(
-                                _plantList[index].price.toString().farsiNumber,
-                                style: TextStyle(
-                                  fontFamily: "Muli",
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                  color: Constants.primaryColor,
-                                ),
-                              ),
-                            ],
-                          ),
-                          Stack(
-                            clipBehavior: Clip.none,
-                            children: [
-                              Container(
-                                width: 60,
-                                height: 60,
-                                decoration: BoxDecoration(
-                                    color:
-                                        Constants.primaryColor.withOpacity(0.8),
-                                    shape: BoxShape.circle),
-                              ),
-                              Positioned(
-                                bottom: 5,
-                                left: 0,
-                                right: 0,
-                                child: SizedBox(
-                                  height: 80,
-                                  child:
-                                      Image.asset(_plantList[index].imageURL),
-                                ),
-                              ),
-                              Positioned(
-                                bottom: 5,
-                                right: 80,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.end,
-                                  children: [
-                                    Text(
-                                      _plantList[index].category,
-                                      style: const TextStyle(
-                                        fontSize: 14,
-                                        fontFamily: "Muli",
-                                      ),
-                                    ),
-                                    Text(
-                                      _plantList[index].category,
-                                      style: const TextStyle(
-                                        fontSize: 18,
-                                        fontFamily: "Muli",
-                                        color: Colors.black,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          )
-                        ],
-                      ),
-                    ),
+                  return NewPlantWidget(
+                    plantList: _plantList,
+                    index: index,
                   );
                 },
               ),
