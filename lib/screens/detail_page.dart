@@ -261,7 +261,57 @@ class _DetailPageState extends State<DetailPage> {
                         bool isSelected = toggleIsSelected(
                             plantlist[widget.plantID].isSelected);
                         plantlist[widget.plantID].isSelected = isSelected;
+                        Navigator.pop(context);
                       });
+                      showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              backgroundColor: Colors.white,
+                              contentPadding: EdgeInsets.zero,
+                              elevation: 0.0,
+                              actions: <Widget>[
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    const SizedBox(height: 50),
+                                    Center(
+                                      child: Text(
+                                        "هورا به سبد خرید اضافه شد",
+                                        style: TextStyle(
+                                            fontSize: 18,
+                                            fontFamily: "Muli",
+                                            fontWeight: FontWeight.bold,
+                                            color: Constants.primaryColor),
+                                      ),
+                                    ),
+                                    const SizedBox(height: 80),
+                                    Container(
+                                      padding: const EdgeInsets.all(8.0),
+                                      decoration: const BoxDecoration(
+                                        color: Colors.white10,
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(10.0),
+                                        ),
+                                      ),
+                                      child: TextButton(
+                                        onPressed: () => Navigator.pop(context),
+                                        child: Text(
+                                          "باشه",
+                                          style: TextStyle(
+                                              fontSize: 18,
+                                              fontFamily: "Muli",
+                                              fontWeight: FontWeight.bold,
+                                              backgroundColor: Colors.white10,
+                                              color: Constants.primaryColor),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            );
+                          });
                     },
                     child: const Text(
                       "اضافه کردن به سبد خرید",
