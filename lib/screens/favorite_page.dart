@@ -30,7 +30,7 @@ class _FavoritePageState extends State<FavoritePage> {
                   ),
                   const SizedBox(height: 20),
                   const Text(
-                    "!!!‌ظاهرا به هیچی علاقه نداشتی",
+                    "!‌ظاهرا به هیچی علاقه نداشتی",
                     textDirection: TextDirection.ltr,
                     style: TextStyle(
                       fontWeight: FontWeight.w500,

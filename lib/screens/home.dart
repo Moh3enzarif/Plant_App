@@ -18,7 +18,7 @@ class _HomePageState extends State<HomePage> {
 
   final List<Plant> _plantList = Plant.plantList;
 
-  bool taggleFavorite(bool isFavorited) {
+  bool toggleFavorite(bool isFavorited) {
     return !isFavorited;
   }
 
@@ -88,7 +88,6 @@ class _HomePageState extends State<HomePage> {
               height: 70,
               width: size.width,
               child: ListView.builder(
-                physics: const BouncingScrollPhysics(),
                 reverse: true,
                 scrollDirection: Axis.horizontal,
                 itemCount: _plantTypes.length,
@@ -123,6 +122,7 @@ class _HomePageState extends State<HomePage> {
               height: size.height * 0.3,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
+                physics: const BouncingScrollPhysics(),
                 reverse: true,
                 itemCount: _plantList.length,
                 itemBuilder: (BuildContext context, int index) {
@@ -159,7 +159,7 @@ class _HomePageState extends State<HomePage> {
                               child: IconButton(
                                 onPressed: () {
                                   setState(() {
-                                    bool isFavorated = taggleFavorite(
+                                    bool isFavorated = toggleFavorite(
                                         _plantList[index].isFavorated);
                                     _plantList[index].isFavorated = isFavorated;
                                   });
